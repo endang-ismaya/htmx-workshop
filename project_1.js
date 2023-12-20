@@ -29,31 +29,62 @@ const defaultData = {
   todos: [],
 };
 const db = new Low(adapter, defaultData);
+await db.read();
 
 const todoInput = handlebars.compile(
   readFileSync(`${BASE_DIR}/views/partials/todo-input.handlebars`, 'utf-8')
 );
+const todoItem = handlebars.compile(
+  readFileSync(`${BASE_DIR}/views/partials/todo-item.handlebars`, 'utf-8')
+);
 
 app.get('/', (req, res) => {
-  res.render('project_1', { partials: { todoInput } });
+  const { todos } = db.data;
+
+  res.render('project_1', { partials: { todoInput, todoItem }, todos });
 });
 
 app.post('/todos', async (req, res) => {
-  setTimeout(async () => {
-    const { todo } = req.body;
-    const input_todo = {
-      id: uuid(),
-      completed: false,
-      name: todo,
-    };
-    db.data.todos.push(input_todo);
-    await db.write();
+  const { todo } = req.body;
+  const input_todo = {
+    id: uuid(),
+    completed: false,
+    name: todo,
+  };
+  db.data.todos.push(input_todo);
+  await db.write();
 
-    const { todos } = db.data;
-    console.log(todos);
+  const { todos } = db.data;
+  console.log(todos);
 
-    res.render('project_1', { layout: false, partials: { todoInput } });
-  }, 10000);
+  setTimeout(() => {
+    res.render('project_1', {
+      layout: false,
+      partials: { todoInput, todoItem },
+      todos,
+    });
+  }, 3000);
+});
+
+app.patch('/todos/:id', async (req, res) => {
+  const { id } = req.params;
+  const { completed } = req.body;
+
+  const todo = db.data.todos.find((todo) => todo.id === id);
+  if (!todo) {
+    return res.status(404).send('ToDo not found!');
+  }
+
+  todo.completed = !!completed;
+  await db.write();
+
+  setTimeout(() => {
+    res.render('project_1', {
+      layout: false,
+      partials: { todoInput, todoItem },
+      todos: db.data.todos,
+    });
+  }, 3000);
 });
 
 app.listen(3000, () => {
