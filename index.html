@@ -16,58 +16,68 @@
         height: 150px;
         color: whitesmoke;
       }
+
+      .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 18px;
+        border-radius: 10px;
+        width: 200px;
+        height: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+        background-color: #1976d2;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        opacity: 0.7;
+      }
+
+      .btn:disabled,
+      .btn[disabled] {
+        border: 1px solid #999999;
+        background-color: #cccccc;
+        color: #666666;
+        cursor: default;
+      }
+
+      body {
+        background-color: black;
+        color: whitesmoke;
+      }
     </style>
   </head>
 
   <body>
     <h1>Intro to HTMX</h1>
 
-    <input
-      type="text"
-      name="input"
-      id="input1"
-      hx-get="https://html-mock.fly.dev/tag/paragraph"
+    <!-- Request indicators -->
+    <button
+      hx-get="/indicator"
       hx-target="#result"
-    />
-
-    <h2>Trigger by mouse enter</h2>
-    <div
-      class="box1"
-      hx-get="https://html-mock.fly.dev/tag/paragraph"
-      hx-target="#result"
-      hx-trigger="mouseenter once"
+      hx-indicator="#indicator"
+      hx-disabled-elt=".to-disabled"
+      class="btn to-disabled"
     >
-      ONCE
+      Request Indicator
+    </button>
+
+    <div>
+      <label for="username">Username</label>
+      <input type="text" class="to-disabled" name="username" />
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input type="text" class="to-disabled" name="email" />
     </div>
 
-    <h2>Trigger by mouseenter delay 1s</h2>
-    <div
-      class="box1"
-      hx-get="https://html-mock.fly.dev/tag/paragraph"
-      hx-target="#result"
-      hx-trigger="mouseenter delay:1s"
-    >
-      DELAY 1s
-    </div>
-
-    <h2>Trigger by mouseenter delay 1s</h2>
-    <div
-      class="box1"
-      hx-get="https://html-mock.fly.dev/tag/paragraph"
-      hx-target="#result"
-      hx-trigger="mouseenter throttle:3s"
-    >
-      THROTTLE 1s
-    </div>
-
-    <h2>Trigger by ctrl click</h2>
-    <div
-      class="box1"
-      hx-get="https://html-mock.fly.dev/tag/paragraph"
-      hx-target="#result"
-      hx-trigger="click[ctrlKey]"
-    >
-      THROTTLE 1s
+    <div class="htmx-indicator" id="indicator">
+      <img src="assets/bars.svg" alt="indicator" />
     </div>
 
     <div id="result"></div>
