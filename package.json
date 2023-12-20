@@ -7,12 +7,22 @@
   "scripts": {
     "start": "node app.js",
     "dev": "node --watch app.js --trace-warnings",
-    "project_1": "node --watch project_1.js"
+    "project_1": "nodemon project_1.js",
+    "watch": "tailwindcss -i ./input.css -o ./public/css/style.css --watch",
+    "build:css": "tailwindcss -i ./input.css -o ./public/css/style.css"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "handlebars": "^4.7.8",
+    "lowdb": "^6.1.1",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "tailwindcss": "^3.4.0"
   }
 }

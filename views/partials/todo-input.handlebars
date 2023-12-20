@@ -1,0 +1,16 @@
+<form hx-post='/todos' hx-target='body' hx-swap='innerHTML'>
+  <input
+    type='text'
+    name='todo'
+    required
+    minlength='5'
+    placeholder="what's in your mind"
+    class='block w-full rounded-lg p-4 text-black text-2xl'
+    autofocus
+  />
+
+  <button
+    type='submit'
+    class='block w-full rounded-lg text-xl mt-4 bg-amber-500 uppercase p-2 font-bold hover:bg-amber-600 transition-all hover:translate-y-1 hover:shadow-lg'
+  >Add Todo</button>
+</form>
