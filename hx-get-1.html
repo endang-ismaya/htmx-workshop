@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTMX Learning</title>
+    <script
+      src="https://unpkg.com/htmx.org@1.9.9"
+      integrity="sha384-QFjmbokDn2DjBjq+fM+8LUIVrAgqcNW2s0PjAxHETgRn9l4fvX31ZxDxvwQnyMOX"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <h1>Intro to HTMX</h1>
+    <button
+      hx-get="https://html-mock.fly.dev/gist/5962aa323f41d88bcdff041fee0304e3#file-hello-htmx-html"
+      hx-target="#result"
+    >
+      Greet
+    </button>
+
+    <div id="result"></div>
+  </body>
+</html>
