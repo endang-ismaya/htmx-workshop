@@ -31,6 +31,47 @@ app.get('/indicator', (req, res) => {
   }, 3000);
 });
 
+app.post('/form', (req, res) => {
+  res.send('<h3>Form Submission success</h3>');
+});
+
+app.post('/validate', (req, res) => {
+  res.send('<h3>Validation OK!</h3>');
+});
+
+app.post('/delete', (req, res) => {
+  res.send('<h3>Post is deleted!</h3>');
+});
+
+app.get('/blog', (req, res) => {
+  res.send('<h3>Blog Page</h3>');
+});
+
+const color_picks = [
+  'blue',
+  'yellow',
+  'green',
+  'white',
+  'black',
+  'aqua',
+  'brown',
+];
+
+app.get('/colors', (req, res) => {
+  const random = Math.floor(Math.random() * color_picks.length);
+
+  res.send(`<div
+  id="color-demo"
+  class="smooth"
+  style="color: ${color_picks[random]}"
+  hx-get="/colors"
+  hx-swap="outerHTML"
+  hx-trigger="every 2s"
+>
+  Color Swap
+</div>`);
+});
+
 app.listen(3000, () => {
   console.log(`Server is listening on http://localhost:${PORT}`);
 });

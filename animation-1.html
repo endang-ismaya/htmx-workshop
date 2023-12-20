@@ -64,5 +64,16 @@
 
   <body>
     <h1>Intro to HTMX</h1>
+
+    <div
+      id="color-demo"
+      class="smooth"
+      style="color: red"
+      hx-get="/colors"
+      hx-swap="outerHTML"
+      hx-trigger="every 2s"
+    >
+      Color Swap
+    </div>
   </body>
 </html>

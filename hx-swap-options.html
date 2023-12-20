@@ -50,19 +50,41 @@
         background-color: black;
         color: whitesmoke;
       }
-
-      a {
-        color: white;
-        text-decoration: none;
-      }
-
-      .smooth {
-        transition: all 2s ease-in;
-      }
     </style>
   </head>
 
   <body>
     <h1>Intro to HTMX</h1>
+
+    <!-- hx-swap: innerHTML, outerHTML, afterbegin, beforebegin -->
+    <!-- hx-swap="beforebegin show:top" -->
+    <button
+      hx-get="/indicator"
+      hx-target="#result"
+      hx-indicator="#indicator"
+      hx-disabled-elt=".to-disabled"
+      class="btn to-disabled"
+      hx-swap="beforebegin show:top"
+    >
+      Request Indicator
+    </button>
+
+    <br />
+
+    <div>
+      <label for="username">Username</label>
+      <input type="text" class="to-disabled" name="username" />
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input type="text" class="to-disabled" name="email" />
+    </div>
+    <div style="height: 1200px"></div>
+
+    <div class="htmx-indicator" id="indicator">
+      <img src="assets/bars.svg" alt="indicator" />
+    </div>
+
+    <div id="result"></div>
   </body>
 </html>

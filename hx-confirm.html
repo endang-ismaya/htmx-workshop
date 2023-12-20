@@ -50,19 +50,25 @@
         background-color: black;
         color: whitesmoke;
       }
-
-      a {
-        color: white;
-        text-decoration: none;
-      }
-
-      .smooth {
-        transition: all 2s ease-in;
-      }
     </style>
   </head>
 
   <body>
     <h1>Intro to HTMX</h1>
+
+    <!-- Confirming Request -->
+    <button
+      hx-delete="/delete"
+      hx-confirm="Are you sure? You want to delete?"
+      class="btn"
+    >
+      Delete
+    </button>
+
+    <div hx-confirm="Are you sure?">
+      <button hx-get="/validate">GET</button>
+      <button hx-put="/form">PUT</button>
+      <button hx-delete="/delete" hx-confirm="unset">DELETE-NO-CONFIRM</button>
+    </div>
   </body>
 </html>
