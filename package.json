@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node app.js",
-    "dev": "node --watch app.js --trace-warnings"
+    "dev": "node --watch app.js --trace-warnings",
+    "project_1": "node --watch project_1.js"
   },
   "keywords": [],
   "author": "",
