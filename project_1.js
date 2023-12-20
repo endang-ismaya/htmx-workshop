@@ -39,19 +39,21 @@ app.get('/', (req, res) => {
 });
 
 app.post('/todos', async (req, res) => {
-  const { todo } = req.body;
-  const input_todo = {
-    id: uuid(),
-    completed: false,
-    name: todo,
-  };
-  db.data.todos.push(input_todo);
-  await db.write();
+  setTimeout(async () => {
+    const { todo } = req.body;
+    const input_todo = {
+      id: uuid(),
+      completed: false,
+      name: todo,
+    };
+    db.data.todos.push(input_todo);
+    await db.write();
 
-  const { todos } = db.data;
-  console.log(todos);
+    const { todos } = db.data;
+    console.log(todos);
 
-  res.render('project_1', { layout: false, partials: { todoInput } });
+    res.render('project_1', { layout: false, partials: { todoInput } });
+  }, 10000);
 });
 
 app.listen(3000, () => {
